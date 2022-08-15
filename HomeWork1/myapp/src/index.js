@@ -5,9 +5,10 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
+const myName = 'Vladimir';
 root.render(
   <React.StrictMode>
-    <App />
+    <App name={myName} />
   </React.StrictMode>
 );
 
