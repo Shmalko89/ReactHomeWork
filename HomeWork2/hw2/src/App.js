@@ -1,6 +1,9 @@
 import logo from './logo.svg';
 import './App.css';
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
+import * as React from 'react';
+import Button from '@mui/material/Button';
+import { refType } from '@mui/utils';
 
 function App() {
   const [messageList, setMessageList] = useState([]);
@@ -10,6 +13,8 @@ function App() {
   })
 
   const botMessage = 'Сообщение Бота!';
+
+  
 
   useEffect(() =>{
     if(messageList.length > 0 && messageList.slice(-1)[0].author !== 'robot'){
@@ -22,6 +27,7 @@ function App() {
   return (
     <div className='App'>
       <Form data ={messageBody} setData = {setMessageBody} setMessage = {setMessageList}></Form>
+      <AutoFocus data = {Message}/>
       <div className='messageList'>
         {
           messageList.map((e, i) => <Message text={e.text} author={e.author} key = {i}/>)
@@ -50,6 +56,8 @@ const Form = ({data, setData, setMessage}) => {
     )
   }
 
+  
+
   return(
     <form onSubmit={submitForm}>
       <input placeholder='Имя' value={text} onChange = {(e)=>
@@ -60,8 +68,21 @@ const Form = ({data, setData, setMessage}) => {
       setData(pervstate => ({...pervstate, author: e.target.value})
       )}/>
 
-      <button type='submit'>Отправить</button>
+      <Button variant="contained">Отправить</Button>
     </form>
+  )
+}
+
+const AutoFocus = ({}) => {
+  const ref = useRef(null)
+  useEffect(() => {
+    ref.current?.focus()
+  }, [])
+
+  return(
+    <>
+    <input ref={ref} onMouseEnter = {() => {console.log('hower')}}/>
+    </>
   )
 }
 
