@@ -1,9 +1,9 @@
 import logo from './logo.svg';
 import './App.css';
 import React, { useState, useEffect, useRef } from 'react';
-import * as React from 'react';
 import Button from '@mui/material/Button';
-import { refType } from '@mui/utils';
+import List from '@mui/material/List';
+
 
 function App() {
   const [messageList, setMessageList] = useState([]);
@@ -11,6 +11,11 @@ function App() {
     text: '',
     author: ''
   })
+  const [chatList, setChatList] = useState([
+    {id:1, name: 'Vladimir'},
+    {id:2, name: 'Sergey'},
+    {id:3, name: 'German'}
+  ])
 
   const botMessage = 'Сообщение Бота!';
 
@@ -26,6 +31,9 @@ function App() {
 
   return (
     <div className='App'>
+      <List>
+          {chatList.map((item) => {item.id, item.name})}
+      </List>
       <Form data ={messageBody} setData = {setMessageBody} setMessage = {setMessageList}></Form>
       <AutoFocus data = {Message}/>
       <div className='messageList'>
