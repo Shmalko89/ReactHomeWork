@@ -32,10 +32,10 @@ function App() {
   return (
     <div className='App'>
       <List>
-          {chatList.map((item) => {item.id, item.name})}
+          {chatList.map((item) => <Component id = {item.id} name ={item.name}/>)}
       </List>
       <Form data ={messageBody} setData = {setMessageBody} setMessage = {setMessageList}></Form>
-      <AutoFocus data = {Message}/>
+      <AutoFocus data = {messageList}/>
       <div className='messageList'>
         {
           messageList.map((e, i) => <Message text={e.text} author={e.author} key = {i}/>)
@@ -76,16 +76,16 @@ const Form = ({data, setData, setMessage}) => {
       setData(pervstate => ({...pervstate, author: e.target.value})
       )}/>
 
-      <Button variant="contained">Отправить</Button>
+      <Button variant="contained" type="submit">Отправить</Button>
     </form>
   )
 }
 
-const AutoFocus = ({}) => {
+const AutoFocus = ({data}) => {
   const ref = useRef(null)
   useEffect(() => {
     ref.current?.focus()
-  }, [])
+  }, [data])
 
   return(
     <>
