@@ -3,6 +3,8 @@ import './App.css';
 import React, { useState, useEffect, useRef } from 'react';
 import Button from '@mui/material/Button';
 import List from '@mui/material/List';
+import {BrowserRouter, Routes, Route, Link, useParams} from "react-router-dom";
+import './Routed.js';
 
 
 function App() {
@@ -18,8 +20,6 @@ function App() {
   ])
 
   const botMessage = 'Сообщение Бота!';
-
-  
 
   useEffect(() =>{
     if(messageList.length > 0 && messageList.slice(-1)[0].author !== 'robot'){
